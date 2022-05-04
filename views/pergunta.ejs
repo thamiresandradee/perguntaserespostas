@@ -3,10 +3,40 @@
     <%- include('partials/navbar') %>
     
     <div class="container">
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+              <a href="/" class="btn btn-dark">Voltar</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= pergunta.titulo %></h5>
+            <p class="card-text"><%= pergunta.descricao %></p>
+            <hr>
+            <form method="POST" action="/salvarresposta">
+                <label>Resposta</label>
+                <textarea name="corpo" id="" cols="30" rows="10" placeholder="Descreva sua resposta" class="form-control"></textarea>
+                <input type="hidden" name="pergunta" value="<%= pergunta.id %>">
+          </div>
+          <div class="card-footer">
+                <button type="submit" class="btn btn-dark">Responder</button>
+            </form>
+          </div>
+        </div>
         <hr>
-        <h1><%= pergunta.titulo %></h1><a href="/" class="btn btn-light">Voltar</a>
-        <p><%= pergunta.descricao %></p>
-        <hr>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Respostas</h3>
+            </div>
+            <div class="card-body">
+                <% respostas.forEach(resposta => { %>
+                    <p class="card-text"><%= resposta.corpo %></p>
+                    <hr>
+                <% })%>
+            </div>
+        </div>
+        <br/>
     </div>
 
 </body>
